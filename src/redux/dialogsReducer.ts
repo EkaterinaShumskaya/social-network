@@ -1,10 +1,7 @@
-import {ActionType} from "./ActionType";
-
 
 export type dialogsPageType = {
   messages: MessageType[]
   dialogs: DialogItemType[]
-  newMessages: string
 }
 export type MessageType = {
   id: number,
@@ -30,26 +27,16 @@ const initState: dialogsPageType={
     { id: 4, name: "Sveta" },
     { id: 5, name: "Vitya" }
   ],
-  newMessages: " "
-}
 
-export const dialogsReducer=(state=initState,action:ActionType):dialogsPageType=>{
+}
+export type DialogsActions=ReturnType<typeof addMessageAC>
+export const dialogsReducer=(state=initState,action:DialogsActions):dialogsPageType=>{
   switch (action.type) {
     case "ADD-MESSAGE": {
-      let newMessage = { id: 5, message: state.newMessages }
+      let newMessage = { id: 5, message: action.newMessageBody }
       const copyState={...state,
-        newMessages:'',
         messages:[...state.messages,newMessage]}
-      // const copyState={...state}
-      // copyState.messages=[...state.messages]
-      // copyState.messages.push(newMessage)
-      // copyState.newMessages=''
       return copyState
-    }
-    case "UPDATE-NEW-MESSAGE-TEXT": {
-      const copyState = {...state,newMessages:action.payload.newMessage}
-      // copyState.newMessages=action.payload.newMessage
-     return copyState
     }
     default: {
       return state
@@ -57,24 +44,16 @@ export const dialogsReducer=(state=initState,action:ActionType):dialogsPageType=
   }
 }
 
-export const addMessageAC = () => {
+export const addMessageAC = (newMessageBody:string) => {
   return {
-    type: "ADD-MESSAGE"
-  } as const
-}
-
-export const updateNewMessagesAC = (text: string) => {
-  return {
-    type: "UPDATE-NEW-MESSAGE-TEXT",
-    payload:{
-      newMessage: text
-    }
-    
+    type: "ADD-MESSAGE",
+    newMessageBody
   } as const
 
+
+
 }
-export type addMessageACType = ReturnType<typeof addMessageAC>
-export type updateNewMessagesACType = ReturnType<typeof updateNewMessagesAC>
+// export type addMessageACType = ReturnType<typeof addMessageAC>
 
 
 // export type ActionType = addMessageACType | updateNewMessagesACType

@@ -4,6 +4,8 @@ import s from './Dialogs.module.css'
 import { DialogsPropsType } from './DialogsContainer';
 import { Message } from './Message/Message';
 import {Redirect} from "react-router-dom";
+import {Field} from "redux-form";
+import {AddMessageFormRedux, FormMessageType} from "../../Form/AddMessageForm";
 
 
 // type PropsType={
@@ -21,15 +23,17 @@ let messagesElements=props.dialogsPage.messages.map(m=> <Message id= {m.id} mess
 let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} /> )
   
 
-let addMessage=()=>{
-    props.addMessage()
- 
+// let addMessage=()=>{
+//     props.addMessage()
+//
+// }
+// let onMessageChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
+//     let text = e.target.value
+// props.updateNewMessages(text)
+// };
+const addNewMessage=(values:FormMessageType)=>{
+    props.addMessage(values.newMessageBody)
 }
-let onMessageChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-    let text = e.target.value
-props.updateNewMessages(text)
-};
-
 
 return (
     <div className={s.dialogs}>
@@ -38,10 +42,14 @@ return (
       </div>
       <div className={s.messages}>
         {messagesElements}
-        <textarea value={props.dialogsPage.newMessages} onChange={onMessageChange} placeholder="Enter your message" /> 
-                <div><button onClick={addMessage}>Send</button></div>
 
-      </div>
+      {/*  <textarea value={props.dialogsPage.newMessages} onChange={onMessageChange} placeholder="Enter your message" /> */}
+      {/*          <div><button onClick={addMessage}>Send</button></div>*/}
+
+      {/*</div>*/}
+    </div>
+        <AddMessageFormRedux onSubmit={addNewMessage}/>
     </div>
   )
 }
+

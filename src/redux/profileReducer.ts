@@ -1,4 +1,3 @@
-import {ActionType} from "./ActionType";
 import {profileAPI, userAPI} from "../api/api";
 import {AppThunk} from "./reduxStore";
 
@@ -26,7 +25,6 @@ export type ProfileResponseType = {
 
 export type profilePageType = {
     myposts: MyPostType[],
-    newPosts: string,
     profile: ProfileResponseType | null,
     status: string
 }
@@ -43,19 +41,15 @@ const initState: profilePageType = {
         {id: 1, message: "Hi,how are you?", likesCount: 12},
         {id: 2, message: "How are you", likesCount: 13},
     ],
-    newPosts: '',
     profile: null,
     status: ''
 }
 
-export const profileReducer = (state: profilePageType = initState, action: ActionType): profilePageType => {
+export const profileReducer = (state: profilePageType = initState, action: ProfileActions): profilePageType => {
     switch (action.type) {
         case "ADD-POST": {
-            let newPost = {id: 3, message: state.newPosts, likesCount: 0}
-            return {...state, myposts: [...state.myposts, newPost], newPosts: ''}
-        }
-        case "UPDATE-NEW-POST-TEXT": {
-            return  {...state, newPosts: action.text}
+            let newPost = {id: 3, message: action.newPost, likesCount: 0}
+            return {...state, myposts: [...state.myposts, newPost]}
         }
         case "SET-USER-PROFILE": {
             return {...state, profile: action.profile}
@@ -69,18 +63,13 @@ export const profileReducer = (state: profilePageType = initState, action: Actio
     }
 
 }
-export const addPostAC = () => {
+export const addPostAC = (newPost:string) => {
     return {
         type: "ADD-POST",
+        newPost
     } as const
 }
 
-export const updateNewPostsAC = (text: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        text
-    } as const
-}
 
 export const setUserProfile = (profile: ProfileResponseType | null) => {
     return {
@@ -95,12 +84,11 @@ export const setStatus = (status: string) => {
         status
     } as const
 }
+type setStatusType = ReturnType<typeof setStatus>
+type addPostACType = ReturnType<typeof addPostAC>
+type setUserProfileType = ReturnType<typeof setUserProfile>
 
-export type setStatusType = ReturnType<typeof setStatus>
-export type addPostACType = ReturnType<typeof addPostAC>
-export type updateNewPostsACType = ReturnType<typeof updateNewPostsAC>
-export type setUserProfileType = ReturnType<typeof setUserProfile>
-
+export type ProfileActions=setStatusType | addPostACType | setUserProfileType
 
 export const getUserProfileThunk = (userId: string):AppThunk => {
     return (dispatch) => {

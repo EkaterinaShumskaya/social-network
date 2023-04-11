@@ -33,11 +33,11 @@ export const profileAPI = {
     getUsersProfile(userId: string) {
         return instance.get(`profile/` + userId)
     },
-    getStatus(userId:string) {
-        return instance.get(`profile/status/`+userId)
+    getStatus(userId: string) {
+        return instance.get(`profile/status/` + userId)
     },
-    updateStatus (status:string) {
-        return instance.put(`profile/status`,{status:status})
+    updateStatus(status: string) {
+        return instance.put(`profile/status`, {status: status})
     }
 }
 
@@ -46,8 +46,11 @@ export const authAPI = {
     getAuth() {
         return instance.get(`auth/me`)
     },
-    getLogin(){
-        return instance.post(`auth/login`)
+    getLogin(email: string, password: string, rememberMe: boolean) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
+    },
+    getLoginOut() {
+        return instance.delete(`auth/login`)
     }
 }
 
