@@ -1,10 +1,9 @@
 import {AppStateType} from "../../redux/reduxStore";
 import {connect} from "react-redux";
 import {
-    follow, followThunk, requestUsersThunk,
+    followThunk, requestUsersThunk,
     setCurrentPage,
-    toggleIsFollowingProgress,
-    unfollow, unfollowThunk,
+    unfollowThunk,
     UserType
 } from "../../redux/usersReducer";
 import React from "react";
@@ -12,12 +11,11 @@ import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
-    getUsers,
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount
+    getTotalUsersCount, getUsers,
 } from "../../redux/users-selectors";
 
 
@@ -41,17 +39,20 @@ export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.requestUsersThunk(this.props.currentPage, this.props.pageSize)
+        const {currentPage, pageSize} = this.props
+        this.props.requestUsersThunk(currentPage, pageSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.requestUsersThunk(pageNumber, this.props.pageSize)
+        const {pageSize} = this.props
+        this.props.requestUsersThunk(pageNumber, pageSize)
     }
 
     render() {
-
+        console.log(10)
 
         return <>
+
             {this.props.isFetching ? <Preloader/>
                 : null}
             <Users onPageChanged={this.onPageChanged}

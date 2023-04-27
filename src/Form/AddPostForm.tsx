@@ -1,7 +1,7 @@
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import React from "react";
 import {maxLengthCreator, requiredField} from "../utils/validators/validators";
-import {Textarea} from "../Components/FormsControls/FormsControls";
+import {Textarea} from "../Components/common/FormsControls/FormsControls";
 
 
 

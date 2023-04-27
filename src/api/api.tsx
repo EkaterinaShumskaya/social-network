@@ -1,4 +1,5 @@
 import axios from "axios";
+import {LoginType} from "../Components/Login/Login";
 
 
 const instance = axios.create(
@@ -6,7 +7,7 @@ const instance = axios.create(
         withCredentials: true,
         baseURL: `https://social-network.samuraijs.com/api/1.0/`,
         headers: {
-            "API-KEY": "93737c14-24ae-4d1e-8775-8b39d3e9c4bc"
+            "API-KEY": "b82a7625-d692-4a6a-b2f1-14ea19aac152"
         }
     }
 )
@@ -46,8 +47,8 @@ export const authAPI = {
     getAuth() {
         return instance.get(`auth/me`)
     },
-    getLogin(email: string, password: string, rememberMe: boolean) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    getLogin(data:LoginType) {
+        return instance.post(`auth/login`, data)
     },
     getLoginOut() {
         return instance.delete(`auth/login`)

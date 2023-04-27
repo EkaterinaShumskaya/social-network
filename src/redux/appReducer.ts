@@ -38,12 +38,10 @@ export const initializedSuccess = () => {
 
 
 export const initializeAppThunk = (): AppThunk => {
-    return (dispatch) => {
+    return async (dispatch) => {
         const promise = dispatch(getAuthThunk());
-        Promise.all([promise])
-            .then(() => {
-            dispatch(initializedSuccess())
-        })
+        await Promise.all([promise])
+        dispatch(initializedSuccess())
 
     }
 }
