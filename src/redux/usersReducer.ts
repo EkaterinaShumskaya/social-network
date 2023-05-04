@@ -27,7 +27,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
     users: [],
-    pageSize: 100,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
@@ -47,14 +47,12 @@ export const usersReducer = (state = initialState, action: UsersActions): Initia
             return {...state, users: action.users}
         }
         case "SET-CURRENT-PAGE": {
-            console.log('4')
             return {...state, currentPage: action.currentPage}
         }
         case "SET-TOTAL-USER-COUNT": {
             return {...state, totalUsersCount: action.totalCount}
         }
         case "TOGGLE-IS-FETCHING": {
-            console.log('3')
             return {...state, isFetching: action.isFetching}
         }
         case "TOGGLE-IS-FOLLOWING-PROGRESS": {
@@ -62,6 +60,11 @@ export const usersReducer = (state = initialState, action: UsersActions): Initia
                 ...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.id]
                     : state.followingInProgress.filter(id => id !== action.id)
+            }
+        }
+        case "SET-PAGE-SIZE": {
+            return {
+                ...state, pageSize: action.pageSize
             }
         }
         default:
@@ -100,6 +103,12 @@ export const setTotalUsersCount = (totalCount: number) => {
         totalCount
     } as const
 }
+export const setPageSize = (pageSize: number) => {
+    return {
+        type: "SET-PAGE-SIZE",
+        pageSize
+    } as const
+}
 export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE-IS-FETCHING",
@@ -122,20 +131,19 @@ type  setCurrentPageACType = ReturnType<typeof setCurrentPage>
 type  setTotalUsersCountACType = ReturnType<typeof setTotalUsersCount>
 type toggleIsFetchingACType = ReturnType<typeof toggleIsFetching>
 type toggleIsFollowingProgressACType = ReturnType<typeof toggleIsFollowingProgress>
+type setPageSizeACType = ReturnType<typeof setPageSize>
 
 export type UsersActions = followACType | unfollowACType | setUsersACType | setCurrentPageACType
-    | setTotalUsersCountACType | toggleIsFetchingACType | toggleIsFollowingProgressACType
+    | setTotalUsersCountACType | toggleIsFetchingACType | toggleIsFollowingProgressACType | setPageSizeACType
 
-export const requestUsersThunk = (page: number, pageSize: number): AppThunk => {
-    console.log('1')
+export const requestUsersThunk = (currentPage: number, pageSize: number): AppThunk => {
     return async (dispatch) => {
-        console.log('2')
         dispatch(toggleIsFetching(true))
-        dispatch(setCurrentPage(page))
-        const data = await userAPI.getUsers(page, pageSize)
-        console.log('5')
+        const data = await userAPI.getUsers(currentPage, pageSize)
         dispatch(toggleIsFetching(false))
         dispatch(setUsers(data.items))
+        dispatch(setCurrentPage(currentPage))
+        dispatch(setPageSize(pageSize))
         dispatch(setTotalUsersCount(data.totalCount))
     }
 }

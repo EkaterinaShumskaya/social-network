@@ -25,7 +25,7 @@ type MapStateToPropsType = {
     totalUsersCount: number,
     currentPage: number,
     isFetching: boolean,
-    followingInProgress: number[]
+    followingInProgress: number[],
 }
 
 type MapDispatchToPropsType = {
@@ -43,13 +43,12 @@ class UsersContainer extends React.Component<UsersPropsType> {
         this.props.requestUsersThunk(currentPage, pageSize)
     }
 
-    onPageChanged = (pageNumber: number) => {
-        const {pageSize} = this.props
+
+    onPageChanged = (pageNumber: number, pageSize: number = 10) => {
         this.props.requestUsersThunk(pageNumber, pageSize)
     }
 
     render() {
-        console.log(10)
 
         return <>
 
@@ -69,16 +68,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 }
 
-// const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-//     return {
-//         users: state.users.users,
-//         pageSize: state.users.pageSize,
-//         totalUsersCount: state.users.totalUsersCount,
-//         currentPage: state.users.currentPage,
-//         isFetching: state.users.isFetching,
-//         followingInProgress: state.users.followingInProgress
-//     }
-// }
 
 const mapStateToProps = (state: AppStateType) => {
     return {
