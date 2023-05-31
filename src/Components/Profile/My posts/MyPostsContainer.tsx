@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {compose, Dispatch} from 'redux';
-import {addPostAC, MyPostType} from '../../../redux/profileReducer';
+import {addLikeAC, addPostAC, MyPostType} from '../../../redux/profileReducer';
 import {AppStateType} from '../../../redux/reduxStore';
 import {MyPosts} from './MyPosts';
 
@@ -11,7 +11,9 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    onAddPost: (newPost:string) => void
+    onAddPost: (newPost: string) => void
+    addLike: (id: string) => void
+
 }
 
 export type MyPostsPropsType = MapStateToPropsType & MapDispatchToPropsType
@@ -27,6 +29,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         onAddPost: (newPost) => {
             dispatch(addPostAC(newPost))
         },
+        addLike: (id: string) => {
+            dispatch(addLikeAC(id))
+        }
 
     }
 }

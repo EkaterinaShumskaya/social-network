@@ -1,13 +1,77 @@
+.headerContainer {
+    position: fixed;
+    width: 100%;
+    background-color: black;
+    z-index: 2;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Lato', sans-serif;
+    line-height: 26px;
+    font-size: 13px;
+
+}
+
 .header {
-  grid-area: h;
-    background-color: chartreuse;
-  }
-  .header img {
-    width: 20px;
-  }
+    display: flex;
+    align-items: center;
+    width: 98%;
+    background-color: black;
+    z-index: 1;
+    border-radius: 5px;
+    margin: 10px;
+    justify-content: space-between;
+
+}
+
+.name {
+    margin: 15px 5px;
+    color: ghostwhite;
+    font-weight: bold;
+}
+
+.logo {
+    width: 40px;
+    margin: 5px 5px;
+
+}
+
+.logoAndTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
 .loginBlock {
-  float:right;
+    color: #edf6f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.loginBlock a{
-  color: white;
+
+.loginBlock > span {
+    margin-right: 10px;
 }
+
+/*.link{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  text-decoration: none;*/
+/*  font-weight: bold;*/
+/*}*/
+
+/*.link:visited{*/
+/*  color: #edf6f9;*/
+/*}*/
+/*.link:link{*/
+/*  color: #edf6f9;*/
+/*}*/
+/*.active{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  align-items: center;*/
+/*  font-weight: bold;*/
+/*  text-decoration: none;*/
+/*  color: #83c5be;*/
+/*}*/

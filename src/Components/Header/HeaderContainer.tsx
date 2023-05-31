@@ -17,22 +17,17 @@ type MapDispatchToPropsType = {
 
 export type HeaderPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-class HeaderContainer extends React.Component<HeaderPropsType> {
-    // componentDidMount() {
-    //     this.props.getAuthThunk()
-    //
-    // }
-
-    render() {
-        return <Header {...this.props}/>
-    }
-}
-
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
-        login: state.auth.data?.login
+        login: state.auth.data?.login,
+    }
+}
 
+class HeaderContainer extends React.Component<HeaderPropsType> {
+
+    render() {
+        return <Header {...this.props}/>
     }
 }
 

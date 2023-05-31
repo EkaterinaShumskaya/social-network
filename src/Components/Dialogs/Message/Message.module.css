@@ -1,0 +1,37 @@
+.messageContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.message {
+    margin: 5px;
+}
+
+.messageBox {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    width: auto;
+    background-color: #83c5be;
+}
+.messageBox::before{
+    content: "";
+    bottom: 15px;
+    left:-10px;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 10px 10px;
+    border-color: transparent transparent #83c5be transparent;
+}
+.avatar {
+    width: 84px;
+    height: 58px;
+    border-radius: 25px;
+    margin: 10px;
+}

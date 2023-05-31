@@ -1,5 +1,7 @@
 import {userAPI} from "../api/api";
 import {AppThunk} from "./reduxStore";
+import {setAppStatusAC} from "./appReducer";
+import {handleServerNetworkError} from "../utils/error-utils";
 
 
 export type UserType = {
@@ -138,36 +140,55 @@ export type UsersActions = followACType | unfollowACType | setUsersACType | setC
 
 export const requestUsersThunk = (currentPage: number, pageSize: number): AppThunk => {
     return async (dispatch) => {
-        dispatch(toggleIsFetching(true))
-        const data = await userAPI.getUsers(currentPage, pageSize)
-        dispatch(toggleIsFetching(false))
-        dispatch(setUsers(data.items))
-        dispatch(setCurrentPage(currentPage))
-        dispatch(setPageSize(pageSize))
-        dispatch(setTotalUsersCount(data.totalCount))
+        try {
+            dispatch(setAppStatusAC('loading'))
+            dispatch(toggleIsFetching(true))
+            const data = await userAPI.getUsers(currentPage, pageSize)
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setCurrentPage(currentPage))
+            dispatch(setPageSize(pageSize))
+            dispatch(setTotalUsersCount(data.totalCount))
+            dispatch(setAppStatusAC('succeeded'))
+        } catch (error) {
+            handleServerNetworkError(error, dispatch)
+        }
     }
 }
 
 
 export const followThunk = (id: number): AppThunk => {
     return async (dispatch) => {
-        dispatch(toggleIsFollowingProgress(true, id))
-        const response = await userAPI.follow(id)
-        if (response.data.resultCode === 0) {
-            dispatch(follow(id))
+        try {
+            dispatch(setAppStatusAC('loading'))
+            dispatch(toggleIsFollowingProgress(true, id))
+            const response = await userAPI.follow(id)
+            if (response.data.resultCode === 0) {
+                dispatch(follow(id))
+            }
+            dispatch(toggleIsFollowingProgress(false, id))
+            dispatch(setAppStatusAC('succeeded'))
+        } catch (error) {
+            handleServerNetworkError(error, dispatch)
         }
-        dispatch(toggleIsFollowingProgress(false, id))
     }
 }
 
 export const unfollowThunk = (id: number): AppThunk => {
     return async (dispatch) => {
-        dispatch(toggleIsFollowingProgress(true, id))
-        const response = await userAPI.unfollow(id)
-        if (response.data.resultCode === 0) {
-            dispatch(unfollow(id))
-        }
-        dispatch(toggleIsFollowingProgress(false, id))
+        try {
+            dispatch(setAppStatusAC('loading'))
+            dispatch(toggleIsFollowingProgress(true, id))
+            const response = await userAPI.unfollow(id)
+            if (response.data.resultCode === 0) {
+                dispatch(unfollow(id))
+            }
+            dispatch(toggleIsFollowingProgress(false, id))
+            dispatch(setAppStatusAC('succeeded'))
 
+        } catch (error) {
+            handleServerNetworkError(error, dispatch)
+        }
     }
+
 }

@@ -1,8 +1,9 @@
-import s from "./users.module.css";
+import s from "./User.module.css";
 import userPhoto from "../../aseets/image/user.png";
 import React, {FC} from "react";
 import {UserType} from "../../redux/usersReducer";
 import {NavLink} from "react-router-dom";
+import Button from "@mui/material/Button";
 
 
 type PropsType = {
@@ -21,36 +22,45 @@ export const User: FC<PropsType> = ({
                                     }) => {
 
 
-    return <div>
-<span>
-   <div>
-        <NavLink to={'/profile/' + user.id}>
-               <img src={user.photos.small !== null ? user.photos.small : userPhoto} className={s.userPhoto}/>
-        </NavLink>
-
-    </div>
-</span>
-        <span>
-    {user.followed
-        ? <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-            unfollowThunk(user.id)
-
-        }}>Unfollow</button>
-        : <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {
-            followThunk(user.id)
-        }}>Follow</button>
+    const setFollowHandler = () => {
+        followThunk(user.id)
     }
-</span>
-        <span>
-                <span>
-                    <div>{user.name}</div>
-                    <div>{user.status}</div>
-                </span>
-                <span>
-                    <div>{"user.location.country"}</div>
-                    <div>{"user.location.city"}</div>
-                </span>
-            </span>
-    </div>
+    const setUnfollowHandler = () => {
+        unfollowThunk(user.id)
+    }
+    const button = !user.followed
+        ? <Button size='small'
+                  variant='outlined'
+                  color='primary'
+                  disabled={followingInProgress.some(id => id === user.id)}
+                  onClick={setFollowHandler}>
+            FOLLOW
+        </Button>
+        : <Button size='small'
+                  variant='outlined'
+                  color='secondary'
+                  disabled={followingInProgress.some(id => id === user.id)}
+                  onClick={setUnfollowHandler}>
+            UNFOLLOW
+        </Button>
+
+    return (
+        <div className={s.userCardContainer}>
+            <div className={s.avatarAndButton}>
+                <NavLink to={'/profile/' + user.id}>
+                    <img className={s.avatar}
+                         alt={'avatar'}
+                         src={user.photos.large !== null ? user.photos.large : userPhoto}/>
+                </NavLink>
+                {button}
+            </div>
+            <div className={s.userInfo}>
+                <NavLink to={'/profile/' + user.id}>
+                    <div className={s.name}>{user.name}</div>
+                </NavLink>
+                <div>Status: {user.status}</div>
+            </div>
+        </div>
+    )
 }
 

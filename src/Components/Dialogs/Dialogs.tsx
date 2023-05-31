@@ -1,55 +1,47 @@
-import React, { ChangeEvent } from 'react';
-import { DialogItem, } from './DialogItem/DialogsItem';
+import React from 'react';
+import {DialogItem,} from './DialogItem/DialogsItem';
 import s from './Dialogs.module.css'
-import { DialogsPropsType } from './DialogsContainer';
-import { Message } from './Message/Message';
-import {Redirect} from "react-router-dom";
-import {Field} from "redux-form";
+import {DialogsPropsType} from './DialogsContainer';
+import {Message} from './Message/Message';
 import {AddMessageFormRedux, FormMessageType} from "../../Form/AddMessageForm";
+import {useDispatch} from "react-redux";
+import {reset} from "redux-form";
 
 
-// type PropsType={
-//   addMessage:()=>void
-//   updateNewMessages:(text:string)=>void
-//   dialogsPage: dialogsPageType
+export const Dialogs = (props: DialogsPropsType) => {
 
- 
-// }
 
-export const Dialogs = (props:DialogsPropsType) => {
+    const messagesElements = props.dialogsPage.messages.map(m => <Message id={m.id} message={m.message}
+                                                                          avatar={m.avatar}/>)
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} avatar={d.avatar}/>)
 
- 
-let messagesElements=props.dialogsPage.messages.map(m=> <Message id= {m.id} message={m.message} />)
-let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem id={d.id} name={d.name} /> )
-  
+    const dispatch = useDispatch()
 
-// let addMessage=()=>{
-//     props.addMessage()
-//
-// }
-// let onMessageChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-//     let text = e.target.value
-// props.updateNewMessages(text)
-// };
-const addNewMessage=(values:FormMessageType)=>{
-    props.addMessage(values.newMessageBody)
-}
+    const addNewMessage = (values: FormMessageType) => {
+        props.addMessage(values.newMessageBody)
+        dispatch(reset('dialogAddMessageForm'))
+    }
 
-return (
-    <div className={s.dialogs}>
-      <div className={s.dialogsItems}>
-        {dialogsElements}
-      </div>
-      <div className={s.messages}>
-        {messagesElements}
+    return (
+        <div className={'app-wrapper-content'}>
+            <div className={s.dialogsContainer}>
+                <div className={s.sidebar}>
 
-      {/*  <textarea value={props.dialogsPage.newMessages} onChange={onMessageChange} placeholder="Enter your message" /> */}
-      {/*          <div><button onClick={addMessage}>Send</button></div>*/}
+                </div>
+                <div className={s.dialogs}>
+                    <div className={s.dialogsItems}>
+                        {dialogsElements}
+                    </div>
+                    <div className={s.dialogsMessages}>
+                        {messagesElements}
+                    </div>
+                    <div className={s.addDialogContainer}>
+                        <AddMessageFormRedux onSubmit={addNewMessage}/>
+                    </div>
 
-      {/*</div>*/}
-    </div>
-        <AddMessageFormRedux onSubmit={addNewMessage}/>
-    </div>
-  )
+                </div>
+            </div>
+        </div>
+    )
 }
 

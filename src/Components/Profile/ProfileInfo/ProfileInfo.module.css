@@ -1,8 +1,113 @@
-.descriptionBlock {
-padding: 10px;
-}
-.pic{
-    width: 1000px;
-    height: 500px;
+/*.descriptionBlock {*/
+/*    padding: 10px;*/
+/*}*/
 
+/*.pic {*/
+/*    width: 1000px;*/
+/*    height: 500px;*/
+
+/*}*/
+
+/*.mainPhoto {*/
+/*    max-width: 100px;*/
+/*}*/
+
+/*.contact {*/
+/*padding-left: 10px;*/
+/*}*/
+.mainContainer {
+
+    margin: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
+
+}
+
+.avatarContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -70px
+}
+
+.photo {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 10px solid #fff;
+}
+
+.infoContainer {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contacts > span {
+    margin-right: 10px;
+}
+
+.editButton {
+    background: #135c76;
+    padding: 7px 75px;
+    border: none;
+    font-size: 14px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    outline: none;
+    border-radius: 30px;
+}
+
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.button {
+    width: 10px;
+    height: 10px;
+    position: absolute !important;
+    bottom: 15px;
+    right: 15px;
+}
+
+.container > label {
+    background-color: whitesmoke;
+    border: 1px solid #006d77;
+}
+
+.container > label:hover {
+    background-color: whitesmoke;
+    border: 1px solid #006d77;
+}
+
+.Name {
+    padding-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #006d77;
+    align-self: center;
+}
+
+.status {
+    font-size: 17px;
 }

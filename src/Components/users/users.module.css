@@ -2,3 +2,23 @@
     width: 100px;
     height: 100px;
 }
+
+.usersContainer {
+    display: flex;
+    margin: 10px 0;
+
+}
+
+.sidebar {
+    width: 30%;
+}
+
+.usersCards {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.usersCards nav {
+    align-self: center;
+}

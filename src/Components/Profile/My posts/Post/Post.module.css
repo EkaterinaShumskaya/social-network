@@ -1,7 +1,32 @@
 
-.item{
-  color: white;
+.post {
+    padding: 0 10px 10px;
+    margin-top: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
+    border-radius: 5px;
+    background: ghostwhite;
 }
-.item img{
-  width: 50px;
+
+.avatarAndName {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+}
+
+.message {
+    margin: 0 10px 10px 25px;
+    font-size: 17px;
+}
+
+
+.avatarPost {
+    width: 50px;
 }

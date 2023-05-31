@@ -1,20 +1,20 @@
 import {RootActions} from "./ActionType";
 
 export type sidebarType = {
-  friends: FriendType[]
+    friends: FriendType[]
 }
 export type FriendType = {
-  id: number
-  name: string
+    id: number
+    name: string
 }
-let initialState:sidebarType={
-  friends:[
-    { id: 1, name: "Katya" },
-    { id: 2, name: "Ilya" },
-    { id: 3, name: "Sasha" },
-  ]
+let initialState: sidebarType = {
+    friends: [
+        {id: 1, name: "Katya"},
+        {id: 2, name: "Ilya"},
+        {id: 3, name: "Sasha"},
+    ]
 }
 
-export const sidebarReducer=(state=initialState,action:RootActions):sidebarType=>{
-  return state
+export const sidebarReducer = (state = initialState, action: RootActions): sidebarType => {
+    return state
 }

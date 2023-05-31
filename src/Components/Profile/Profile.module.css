@@ -1,1 +1,39 @@
 
+.containerInfoAndPosts {
+    display: flex;
+    flex-direction: row;
+}
+
+.containerInfo {
+    width: 30%;
+}
+
+.containerPosts {
+    width: 40%;
+}
+
+.headerContent {
+    width: 101%;
+    object-fit: cover;
+    min-height: 360px;
+    border-radius: 0 0 4px 4px;
+    position: relative;
+}
+
+.sidebar {
+    width: 20%;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 7px;
+    word-break: break-word;
+}
+
+.data > span {
+    font-weight: bold;
+}

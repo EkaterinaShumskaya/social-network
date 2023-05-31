@@ -1,21 +1,16 @@
 import {AppStateType} from "../../redux/reduxStore";
 import {connect} from "react-redux";
-import {
-    followThunk, requestUsersThunk,
-    setCurrentPage,
-    unfollowThunk,
-    UserType
-} from "../../redux/usersReducer";
+import {followThunk, requestUsersThunk, setCurrentPage, unfollowThunk, UserType} from "../../redux/usersReducer";
 import React from "react";
 import {Users} from "./Users";
-import {Preloader} from "../common/Preloader/Preloader";
 import {compose} from "redux";
 import {
     getCurrentPage,
     getFollowingInProgress,
     getIsFetching,
     getPageSize,
-    getTotalUsersCount, getUsers,
+    getTotalUsersCount,
+    getUsers,
 } from "../../redux/users-selectors";
 
 
@@ -52,8 +47,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
         return <>
 
-            {this.props.isFetching ? <Preloader/>
-                : null}
+            {/*{this.props.isFetching ? <Preloader/>*/}
+            {/*    : null}*/}
             <Users onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    pageSize={this.props.pageSize}

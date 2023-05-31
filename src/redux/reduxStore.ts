@@ -11,34 +11,26 @@ import {appReducer} from "./appReducer";
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 
 
-
 const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     users: usersReducer,
-    auth:authReducer,
-    form:FormReducer,
-    app:appReducer
+    auth: authReducer,
+    form: FormReducer,
+    app: appReducer
 
 })
-
-
-// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__|| compose;
-// export const store =legacy_createStore(rootReducer, composeEnhancers(applyMiddleware(thunkMiddleware)
-// ));
 
 
 export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 
 export type AppStateType = ReturnType<typeof rootReducer>
-export type AppThunk<ReturnType=void >=ThunkAction <
-    ReturnType,
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
     AppStateType,
     unknown,
-    RootActions
->
+    RootActions>
 
 
 export type AppThunkDispatch = ThunkDispatch<AppStateType, any, AnyAction>

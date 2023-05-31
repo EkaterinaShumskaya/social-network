@@ -1,0 +1,47 @@
+.userCardContainer {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    background: ghostwhite;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2);
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.userInfo a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #006d77;
+}
+
+.userLocation {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.avatarAndButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+}
+
+.name {
+    font-weight: bold;
+}

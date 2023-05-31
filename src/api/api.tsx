@@ -1,5 +1,6 @@
 import axios from "axios";
 import {LoginType} from "../Components/Login/Login";
+import {ProfileDataFormDataType} from "../Components/Profile/ProfileDataForm/ProfileDataForm";
 
 
 const instance = axios.create(
@@ -39,6 +40,18 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status: status})
+    },
+    savePhoto(photoFile: File) {
+        const formData = new FormData()
+        formData.append('image', photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+    },
+    saveProfile(profile: ProfileDataFormDataType) {
+        return instance.put(`profile`, profile)
     }
 }
 
@@ -47,11 +60,17 @@ export const authAPI = {
     getAuth() {
         return instance.get(`auth/me`)
     },
-    getLogin(data:LoginType) {
+    getLogin(data: LoginType) {
         return instance.post(`auth/login`, data)
     },
     getLoginOut() {
         return instance.delete(`auth/login`)
-    }
+    },
 }
 
+
+export const securityAPI = {
+    getCaptcha() {
+        return instance.get(`security/get-captcha-url`)
+    }
+}

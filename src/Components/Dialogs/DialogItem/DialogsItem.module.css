@@ -1,0 +1,30 @@
+.dialogsItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.avatar {
+    width: 84px;
+    height: 58px;
+    border-radius: 25px;
+    margin: 10px;
+}
+
+.dialogsItems a {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    text-decoration: none;
+    font-size: 14px;
+    color: #006d77;
+}
+
+.dialogsItems a.active {
+    color: #BC9CB0;
+}
+
+.dialogsItems a:link {
+    color: #006d77;
+}
