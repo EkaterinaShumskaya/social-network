@@ -30,14 +30,14 @@ export const User: FC<PropsType> = ({
     }
     const button = !user.followed
         ? <Button size='small'
-                  variant='outlined'
+                  variant='contained'
                   color='primary'
                   disabled={followingInProgress.some(id => id === user.id)}
                   onClick={setFollowHandler}>
             FOLLOW
         </Button>
         : <Button size='small'
-                  variant='outlined'
+                  variant='contained'
                   color='secondary'
                   disabled={followingInProgress.some(id => id === user.id)}
                   onClick={setUnfollowHandler}>

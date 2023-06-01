@@ -79,7 +79,7 @@ export const ProfileDataForm: FC<PropsType> = (props) => {
     });
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
-            <FormControl>
+            <FormControl className={s.formControl}>
                 <form onSubmit={formik.handleSubmit}>
                     <FormGroup>
                         <TextField

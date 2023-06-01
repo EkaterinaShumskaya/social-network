@@ -1,23 +1,24 @@
 
 .containerInfoAndPosts {
     display: flex;
-    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
 .containerInfo {
-    width: 30%;
+    width: 400px;
+    padding: 20px;
 }
 
 .containerPosts {
-    width: 40%;
+    width: 700px;
 }
 
 .headerContent {
-    width: 101%;
     object-fit: cover;
-    min-height: 360px;
-    border-radius: 0 0 4px 4px;
     position: relative;
+    width: 100%;
+    height: 46vh;
 }
 
 .sidebar {

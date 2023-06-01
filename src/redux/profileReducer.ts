@@ -46,8 +46,11 @@ export type MyPostType = {
 
 const initState: profilePageType = {
     myposts: [
-        {id: v1(), message: "Hi,how are you?", likesCount: 12},
-        {id: v1(), message: "How are you", likesCount: 13},
+        {id: v1(), message: "Hi,how are you?", likesCount: 0},
+        {id: v1(), message: "Hello!", likesCount: 10},
+        {id: v1(), message: "It is nice", likesCount: 12},
+        {id: v1(), message: "I am good", likesCount: 8},
+        {id: v1(), message: "How are you?", likesCount: 14},
     ],
     profile: {
         aboutMe: '',

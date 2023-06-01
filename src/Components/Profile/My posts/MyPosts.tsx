@@ -9,8 +9,12 @@ import {reset} from "redux-form";
 
 export const MyPosts = React.memo((props: MyPostsPropsType) => {
 
-    const postsElements = props.myposts.map(p => <Post key={p.id} id={p.id} message={p.message}
-                                                       likesCount={p.likesCount} addLike={props.addLike}/>)
+    const postsElements = props.myposts.map(p => <Post key={p.id} id={p.id}
+                                                       message={p.message}
+                                                       likesCount={p.likesCount}
+                                                       addLike={props.addLike}
+                                                       profile={props.profile}
+                                                       userName={props.userName}/>)
 
     const dispatch = useDispatch()
     const addNewPost = (value: FormPostType) => {

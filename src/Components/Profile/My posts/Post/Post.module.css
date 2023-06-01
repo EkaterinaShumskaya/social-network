@@ -12,6 +12,8 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .avatar {
@@ -29,4 +31,6 @@
 
 .avatarPost {
     width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }

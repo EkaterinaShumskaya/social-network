@@ -1,16 +1,16 @@
 .app-wrapper {
     font-family: 'Lato', sans-serif;
     line-height: 26px;
-    color: #6d6e71;
-    font-size: 13px;
+    font-size: 17px;
+    background-color: #d4d7de;
+    height: 100%;
+
 }
 
 .app-wrapper-content {
     padding-top: 80px;
-    background-color: #e9ecef;
     min-height: 100vh;
     height: max-content;
-    border-radius: 5px;
 }
 
 

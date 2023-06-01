@@ -26,7 +26,6 @@ export const Dialogs = (props: DialogsPropsType) => {
         <div className={'app-wrapper-content'}>
             <div className={s.dialogsContainer}>
                 <div className={s.sidebar}>
-
                 </div>
                 <div className={s.dialogs}>
                     <div className={s.dialogsItems}>
