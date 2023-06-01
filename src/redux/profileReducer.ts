@@ -81,7 +81,7 @@ export const profileReducer = (state: profilePageType = initState, action: Profi
     switch (action.type) {
         case "ADD-POST": {
             let newPost = {id: v1(), message: action.newPost, likesCount: 0}
-            return {...state, myposts: [...state.myposts, newPost]}
+            return {...state, myposts: [newPost,...state.myposts]}
         }
         case "SET-USER-PROFILE": {
             return {...state, profile: action.profile}
